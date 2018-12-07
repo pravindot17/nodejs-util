@@ -1,0 +1,10 @@
+# Dependency directories
+node_modules
+example/node_modules
+
+# Logs
+.vscode
+npm-debug.log*
+
+# Optional npm cache directory
+.npm

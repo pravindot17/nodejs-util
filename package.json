@@ -1,0 +1,25 @@
+{
+  "name": "nodejs-util",
+  "version": "1.1.0",
+  "description": "This library is useful for different utils functions required while development",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pravindot17/nodejs-util.git"
+  },
+  "keywords": [
+    "utils",
+    "nodejs"
+  ],
+  "author": "Pravin Lolage",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.11"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.119"
+  }
+}
