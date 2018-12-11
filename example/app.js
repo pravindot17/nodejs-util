@@ -1,6 +1,7 @@
 let express = require('express');
 let app = express();
 let http = require('http');
+let jsUtils = require('nodejs-util');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -12,6 +13,9 @@ let server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+
+console.log('Is it array', jsUtils.isArray([1, 2, 3]));
+console.log('Is it empty', jsUtils.isEmpty(null));
 
 /**
  * Event listener for HTTP server "error" event.
