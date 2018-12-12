@@ -9,6 +9,8 @@ module.exports = {
     isFilledArray,
     isEmpty,
     isNotEmpty,
+    isNumber,
+    isString,
     formatNumber,
     sleep,
     sanitize,
@@ -41,12 +43,27 @@ function isNotEmpty(obj) {
     return !_.isEmpty(obj)
 }
 
+function isNumber(any) {
+    return (typeof any === 'number')
+}
+
+function isString(any) {
+    return (typeof any === 'string')
+}
+
 function formatNumber(num, decimals = 2) {
+    if (!isNumber(num) && !isString(num)) {
+        throw new Error('Please provide valid number for formatting')
+    }
+
     let strNum = num.toString()
     if (strNum.includes('.')) {
+        if (isString(num)) {
+            num = Number(num)
+        }
         return Number(num.toFixed(decimals))
     } else {
-        return num
+        return Number(num)
     }
 }
 
@@ -81,7 +98,7 @@ function toString(param) {
 }
 
 function isEmptyString(str) {
-    return (isNull(str) || '' === str.trim())
+    return typeof str === 'string' && (isNull(str) || '' === str.trim())
 }
 
 function isValidEmail(email) {

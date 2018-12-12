@@ -7,100 +7,285 @@ chai.use(require('chai-things'))
 
 describe('Javascript Utils', () => {
   let input = null
-  describe('*** NULL CASES ***', () => {
-    it('positive isNull function', () => {
+  describe('*** isNull function ***', () => {
+    it('isNull function with null value', () => {
       input = null
       expect(jsUtils.isNull(input)).equals(true)
     })
 
-    it('negative isNull function', () => {
+    it('isNull function with string value', () => {
       input = 'Hi, this is not null'
       expect(jsUtils.isNull(input)).equals(false)
     })
 
-    it('positive isNotNull function', () => {
+    it('isNull function with boolean value', () => {
+      input = 'Hi, this is not null'
+      expect(jsUtils.isNull(input)).equals(false)
+    })
+  })
+
+  describe('*** isNotNull function ***', () => {
+    it('isNotNull function with string value', () => {
       input = 'I am a bad guy'
       expect(jsUtils.isNotNull(input)).equals(true)
     })
 
-    it('negative isNotNull function', () => {
+    it('isNotNull function with null value', () => {
       input = null
       expect(jsUtils.isNotNull(input)).equals(false)
     })
+
+    it('isNotNull function with boolean value', () => {
+      input = true
+      expect(jsUtils.isNotNull(input)).equals(true)
+    })
   })
 
-  describe('*** ARRAY CASES ***', () => {
-    it('positive isArray function', () => {
+  describe('*** isArray function ***', () => {
+    it('isArray function with empty array', () => {
       input = []
       expect(jsUtils.isArray(input)).equals(true)
     })
 
-    it('negative isArray function', () => {
+    it('isArray function with filled array', () => {
+      input = [1, 2, 3]
+      expect(jsUtils.isArray(input)).equals(true)
+    })
+
+    it('isArray function with string', () => {
       input = 'Tell me, is this array'
       expect(jsUtils.isArray(input)).equals(false)
     })
 
-    it('positive isFilledArray function', () => {
+    it('isArray function with boolean', () => {
+      input = false
+      expect(jsUtils.isArray(input)).equals(false)
+    })
+  })
+
+  describe('*** isFilledArray function ***', () => {
+    it('isFilledArray function with empty array', () => {
+      input = []
+      expect(jsUtils.isFilledArray(input)).equals(false)
+    })
+
+    it('isFilledArray function with filled array', () => {
       input = [1, 2, 3]
       expect(jsUtils.isFilledArray(input)).equals(true)
     })
 
-    it('negative isFilledArray function', () => {
-      input = []
+    it('isFilledArray function with string', () => {
+      input = 'Tell me, is this array'
+      expect(jsUtils.isFilledArray(input)).equals(false)
+    })
+
+    it('isFilledArray function with boolean', () => {
+      input = false
       expect(jsUtils.isFilledArray(input)).equals(false)
     })
   })
 
-  describe('*** empty CASES ***', () => {
-    it('positive isEmpty function', () => {
+  describe('*** isEmpty function ***', () => {
+    it('isEmpty function with string', () => {
       input = ''
       expect(jsUtils.isEmpty(input)).equals(true)
     })
 
-    it('negative isEmpty function', () => {
-      input = 'Is is empty?'
+    it('isEmpty function with array', () => {
+      input = []
+      expect(jsUtils.isEmpty(input)).equals(true)
+    })
+
+    it('isEmpty function with filled array', () => {
+      input = [1, 2, 3]
       expect(jsUtils.isEmpty(input)).equals(false)
     })
 
-    it('positive isNotEmpty function', () => {
+    it('isEmpty function with boolean', () => {
+      input = true
+      expect(jsUtils.isEmpty(input)).equals(true)
+    })
+  })
+
+  describe('*** isNotEmpty function ***', () => {
+    it('isNotEmpty function with string', () => {
       input = 'Who said I am empty'
       expect(jsUtils.isNotEmpty(input)).equals(true)
     })
 
-    it('negative isNotEmpty function', () => {
+    it('isNotEmpty function with empty string', () => {
       input = ''
+      expect(jsUtils.isNotEmpty(input)).equals(false)
+    })
+
+    it('isNotEmpty function with filled array', () => {
+      input = [1, 2, 3]
+      expect(jsUtils.isNotEmpty(input)).equals(true)
+    })
+
+    it('isNotEmpty function with boolean', () => {
+      input = true
       expect(jsUtils.isNotEmpty(input)).equals(false)
     })
   })
 
-  describe('*** STRING CASES ***', () => {
-    it('sanitize function', () => {
+  describe('*** isNumber function ***', () => {
+    it('isNumber function with string', () => {
+      input = 'Who said I am empty'
+      expect(jsUtils.isNumber(input)).equals(false)
+    })
+
+    it('isNumber function with empty string', () => {
+      input = ''
+      expect(jsUtils.isNumber(input)).equals(false)
+    })
+
+    it('isNumber function with filled array', () => {
+      input = [1, 2, 3]
+      expect(jsUtils.isNumber(input)).equals(false)
+    })
+
+    it('isNumber function with boolean', () => {
+      input = true
+      expect(jsUtils.isNumber(input)).equals(false)
+    })
+
+    it('isNumber function with number', () => {
+      input = 123
+      expect(jsUtils.isNumber(input)).equals(true)
+    })
+  })
+
+  describe('*** isString function ***', () => {
+    it('isString function with string', () => {
+      input = 'Who said I am empty'
+      expect(jsUtils.isString(input)).equals(true)
+    })
+
+    it('isString function with empty string', () => {
+      input = ''
+      expect(jsUtils.isString(input)).equals(true)
+    })
+
+    it('isString function with filled array', () => {
+      input = [1, 2, 3]
+      expect(jsUtils.isString(input)).equals(false)
+    })
+
+    it('isString function with boolean', () => {
+      input = true
+      expect(jsUtils.isString(input)).equals(false)
+    })
+
+    it('isString function with number', () => {
+      input = 123
+      expect(jsUtils.isString(input)).equals(false)
+    })
+  })
+
+  describe('*** sanitize function ***', () => {
+    it('sanitize function with spaces at start and end', () => {
+      input = ' hello World '
+      expect(jsUtils.sanitize(input)).equals('hello World')
+    })
+
+    it('sanitize function with spaces at start and end and lowercase', () => {
       input = ' hello World '
       expect(jsUtils.sanitize(input, 'toLowerCase')).equals('hello world')
     })
 
-    it('toString function', () => {
-      input = 1234
-      expect(jsUtils.toString(input)).equals('1234')
+    it('sanitize function with boolean', () => {
+      input = true
+      expect(jsUtils.sanitize(input, 'toLowerCase')).equals('true')
     })
+  })
 
-    it('isEmptyString function', () => {
+  describe('*** isEmptyString function ***', () => {
+    it('isEmptyString function with string', () => {
       input = ''
       expect(jsUtils.isEmptyString(input)).equals(true)
     })
 
-    it('isValidEmail function', () => {
-      input = 'pravind.@123.45'
-      expect(jsUtils.isValidEmail(input)).equals(false)
+    it('isEmptyString function with array', () => {
+      input = []
+      expect(jsUtils.isEmptyString(input)).equals(false)
+    })
+
+    it('isEmptyString function with filled array', () => {
+      input = [1, 2, 3]
+      expect(jsUtils.isEmptyString(input)).equals(false)
+    })
+
+    it('isEmptyString function with boolean', () => {
+      input = true
+      expect(jsUtils.isEmptyString(input)).equals(false)
     })
   })
 
-  describe('*** OTHER CASES ***', () => {
-    it('formatNumber function', () => {
+  describe('*** isValidEmail function ***', () => {
+    it('isValidEmail function with . at domain name', () => {
+      input = 'pravind.@123.45'
+      expect(jsUtils.isValidEmail(input)).equals(false)
+    })
+
+    it('isValidEmail function with . before @', () => {
+      input = 'pravind.@gmail.com'
+      expect(jsUtils.isValidEmail(input)).equals(false)
+    })
+
+    it('isValidEmail function with . at start', () => {
+      input = '.pravindot17@gmail.com'
+      expect(jsUtils.isValidEmail(input)).equals(false)
+    })
+
+    it('isValidEmail function with boolean', () => {
+      input = true
+      expect(jsUtils.isValidEmail(input)).equals(false)
+    })
+
+    it('isValidEmail function with empty array', () => {
+      input = []
+      expect(jsUtils.isValidEmail(input)).equals(false)
+    })
+
+    it('isValidEmail function with empty string', () => {
+      input = ''
+      expect(jsUtils.isValidEmail(input)).equals(false)
+    })
+
+    it('isValidEmail function with proper email', () => {
+      input = 'pravindot17@gmail.com'
+      expect(jsUtils.isValidEmail(input)).equals(true)
+    })
+  })
+
+  describe('*** formatNumber function ***', () => {
+    it('formatNumber function with 4 digits', () => {
       input = 1000.1256
       expect(jsUtils.formatNumber(input)).equals(1000.13)
     })
 
+    it('formatNumber function with null', () => {
+      try {
+        input = null
+        jsUtils.formatNumber(input)
+      } catch (err) {
+        expect(err.message).equals('Please provide valid number for formatting')
+      }
+    })
+
+    it('formatNumber function with leading 0', () => {
+      input = '01000.146'
+      expect(jsUtils.formatNumber(input)).equals(1000.15)
+    })
+
+    it('formatNumber function with proper number', () => {
+      input = 1000
+      expect(jsUtils.formatNumber(input)).equals(1000)
+    })
+  })
+
+  describe('*** sleep function ***', () => {
     it('sleep function', async () => {
       await jsUtils.sleep(1000)
       expect('It worked').equals('It worked')
