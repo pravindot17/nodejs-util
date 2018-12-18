@@ -19,3 +19,6 @@ export function sanitize(str: string, strCase?: string): string
 export function toString(param: any): string
 export function isEmptyString(str: String): boolean
 export function isValidEmail(email: string): boolean
+export function generateRandomString(len?: number): string
+export function getRandomInt(min: number, max: number): number
+export function getRandomDecimalNumber(min: number, max: number, decimal?: number): number

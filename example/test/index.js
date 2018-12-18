@@ -1,9 +1,10 @@
 let chai = require('chai')
 let expect = chai.expect
 let jsUtils = require('nodejs-util')
+const INVALID_NUMBER = 'Please provide valid number'
 
-chai.use(require('chai-like'))
-chai.use(require('chai-things'))
+chai.use(require('chai-like'));
+chai.use(require('chai-things'));
 
 describe('Javascript Utils', () => {
   let input = null
@@ -270,7 +271,7 @@ describe('Javascript Utils', () => {
         input = null
         jsUtils.formatNumber(input)
       } catch (err) {
-        expect(err.message).equals('Please provide valid number for formatting')
+        expect(err.message).equals(INVALID_NUMBER)
       }
     })
 
@@ -282,6 +283,93 @@ describe('Javascript Utils', () => {
     it('formatNumber function with proper number', () => {
       input = 1000
       expect(jsUtils.formatNumber(input)).equals(1000)
+    })
+  })
+
+  describe('*** generateRandomString function ***', () => {
+    it('generateRandomString function with number', async () => {
+      input = 10
+      expect(jsUtils.generateRandomString(input).length).equals(10)
+    })
+
+    it('generateRandomString function with string', async () => {
+      try {
+        input = 'abc'
+        jsUtils.generateRandomString(input)
+      } catch (err) {
+        expect(err.message).equals(INVALID_NUMBER)
+      }
+    })
+
+    it('generateRandomString function with null', async () => {
+      try {
+        input = null
+        jsUtils.generateRandomString(input)
+      } catch (err) {
+        expect(err.message).equals(INVALID_NUMBER)
+      }
+    })
+  })
+
+  describe('*** getRandomInt function ***', () => {
+    it('getRandomInt function with number', async () => {
+      let result = jsUtils.getRandomInt(10, 100)
+      expect(result).to.be.within(10, 100)
+    })
+
+    it('getRandomInt function with single string parameter', async () => {
+      try {
+        jsUtils.getRandomInt('abc', 'bbc')
+      } catch (err) {
+        expect(err.message).equals(INVALID_NUMBER)
+      }
+    })
+
+    it('getRandomInt function with both string parameters', async () => {
+      try {
+        jsUtils.getRandomInt('abc', 'bbc')
+      } catch (err) {
+        expect(err.message).equals(INVALID_NUMBER)
+      }
+    })
+
+    it('getRandomInt function with null', async () => {
+      try {
+        jsUtils.getRandomInt(null, null)
+      } catch (err) {
+        expect(err.message).equals(INVALID_NUMBER)
+      }
+    })
+  })
+
+  describe('*** getRandomDecimalNumber function ***', () => {
+    it('getRandomDecimalNumber function with number', async () => {
+      let result = jsUtils.getRandomDecimalNumber(0.5, 1)
+      expect(result).to.be.within(0.5, 1)
+    })
+
+    it('getRandomDecimalNumber function with single string parameter', async () => {
+      try {
+        jsUtils.getRandomDecimalNumber('abc', 'bbc')
+      } catch (err) {
+        expect(err.message).equals(INVALID_NUMBER)
+      }
+    })
+
+    it('getRandomDecimalNumber function with both string parameters', async () => {
+      try {
+        jsUtils.getRandomDecimalNumber('abc', 'bbc')
+      } catch (err) {
+        expect(err.message).equals(INVALID_NUMBER)
+      }
+    })
+
+    it('getRandomDecimalNumber function with null', async () => {
+      try {
+        jsUtils.getRandomDecimalNumber(null, null)
+      } catch (err) {
+        expect(err.message).equals(INVALID_NUMBER)
+      }
     })
   })
 
