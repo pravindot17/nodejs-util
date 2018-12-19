@@ -1,10 +1,11 @@
 let chai = require('chai')
 let expect = chai.expect
+let {describe, it} = require('mocha')
 let jsUtils = require('nodejs-util')
 const INVALID_NUMBER = 'Please provide valid number'
 
-chai.use(require('chai-like'));
-chai.use(require('chai-things'));
+chai.use(require('chai-like'))
+chai.use(require('chai-things'))
 
 describe('Javascript Utils', () => {
   let input = null
