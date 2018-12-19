@@ -2,6 +2,8 @@ JS Util
 ===================
 This library is usefull for different utils functions required while development
 
+[![npm version](https://badge.fury.io/js/nodejs-util.svg)](https://badge.fury.io/js/nodejs-util)
+
 ## How to use
 Let's see about js code:
 ```js
